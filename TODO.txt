@@ -1,0 +1,64 @@
+
+
+TODO * Add *Stream methods for list fields
+
+TODO * Allow finders to be specified
+    ** DONE For unique fields, automatically generate a finder
+    e.g. IssueInfoDao.findLatest, findByBuildNumber, findByBuildNumberRange, deleteByIssueNumber
+    ** TODO specify indexes, generate finders for them
+    ** TODO specify finders by any combination of fields
+
+TODO * Render a TestBuilder per entity
+
+TODO * Rename to mahanagen
+
+TODO * Validation rules:
+    ** c-ts is a reserved collectionFieldName
+    ** lm-ts is a reserved collectionFieldName
+    ** TYP is a reserved collectionFieldName
+    ** a field name must not be duplicated within a hierarchy
+    ** Abstract classes must not have a TypeDiscriminator
+
+
+TECH DEBT:
+TODO * AbstractJavaRenderer.addConstructorArg takes a ClassField argument. In order to rendere a constructor properly it needs to know if the field is inherited or not. But at the point an immutable ClassField is constructed it doesn't know if it is inherited.
+DONE * Delete Codec-related renderers and classes and rename *DocumentField* classes.
+
+Field Writers Issue:
+We need to use FieldWriters when constructing query filters. The existing FieldWriters take a Document and populate it.
+But the structure of the Document required in a filter is different than the structure the existing FieldWriters create.
+    e.g. {someField: {"$gt", 100}}
+If the FieldWriters are changed so that they solely convert an input value to an output value then the knowledge of the structure can be moved into the calling class.
+But this would also mean that we lose the ability for the converter to change the output type. Not true. The calling class just puts the output value into a Document. It doesn't care about its type.
+We would lose the ability for the FieldWriter to split a value into multiple fields.
+How would a Filter work if the converter wanted to split into multiple fields?
+
+! Modify FieldWriters to be converters that just convert a value and don't populate the Document.
+
+
+MapFieldReader
+
+Inject a MapFieldReader instance based on a @Qualifier. The qualifier should be unique based on entityKey and fieldName.
+In DaoRenderer
+    If field has an explicit FieldReaderFqcn,
+        use it.
+    else use a MapFieldReader instance that is injected with an appropriate keyMapper and valueMapper
+        if an explicit keyMapper or valueMapper is declared
+            use it
+        else
+            use an implicit mapper
+
+The above implies that the FieldDef for a map field must know the classFieldName used for the reader.
+
+DONE FieldDef.getFieldReaderFqcn() must be changed to return a ParameterizedType.
+
+TODO figure out how to use an InstantFieldConverter in the InstantListFieldReader.
+    This means we could do away with the *ListFieldReader classes and use the converters in Lists, Maps and Sets.
+    This also means that a spec author could declare a default converter for a given FieldType and that would be
+    used for single fields as well as collections containing that fieldType.
+
+    To automatically use a default fieldType converter in a List field...
+        - create a ListFieldReader class that takes a converter as an argument.
+        - The entityFieldDef.getFieldReaderFqcn will have to return ListFieldReader<T>
+            ~> modify fieldReaderFqcn to return a ParameterizedType
+        - Must be able to find an implicit FieldConverter for a given FieldType

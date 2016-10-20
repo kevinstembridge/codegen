@@ -1,0 +1,48 @@
+
+allprojects {
+    group='com.mahanaroad'
+    version='0.1.0'
+}
+
+subprojects {
+
+    apply plugin: 'java'
+    apply plugin: 'idea'
+
+    repositories {
+        mavenCentral()
+    }
+
+
+    configurations {
+        tests {
+            extendsFrom testRuntime
+        }
+    }
+
+
+    task jarTests(type: Jar, dependsOn: testClasses) {
+        classifier = 'tests'
+        from sourceSets.test.output
+    }
+
+
+    artifacts {
+        tests jarTests
+    }
+
+    test {
+        useTestNG()
+    }
+
+    tasks.jar.dependsOn += jarTests
+
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.0'
+}
+
+
+

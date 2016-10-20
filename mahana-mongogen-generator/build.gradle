@@ -1,0 +1,11 @@
+apply plugin: 'groovy'
+
+dependencies {
+
+    compile gradleApi()
+    compile project(':mahana-mongogen-spec')
+    compile "org.slf4j:slf4j-api:$slf4jVersion"
+
+}
+
+

@@ -1,0 +1,9 @@
+
+
+dependencies {
+    compile project(":mahana-mongogen-sample")
+
+    testCompile "org.mockito:mockito-core:$mockitoVersion"
+    testCompile "org.springframework:spring-test:$springVersion"
+    testCompile "org.testng:testng:$testNgVersion"
+}

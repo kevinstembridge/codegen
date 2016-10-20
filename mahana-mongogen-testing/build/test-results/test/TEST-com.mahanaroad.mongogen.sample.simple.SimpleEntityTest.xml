@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.mahanaroad.mongogen.sample.simple.SimpleEntityTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2016-09-30T22:31:01" hostname="doug" time="0.007">
+  <properties/>
+  <testcase name="setter_should_throw_BlankStringException" classname="com.mahanaroad.mongogen.sample.simple.SimpleEntityTest" time="0.0"/>
+  <testcase name="setter_should_throw_NullPointerException" classname="com.mahanaroad.mongogen.sample.simple.SimpleEntityTest" time="0.001"/>
+  <testcase name="should_extend_AbstractEntity" classname="com.mahanaroad.mongogen.sample.simple.SimpleEntityTest" time="0.0"/>
+  <testcase name="should_not_have_setters_for_unmodifiable_fields[0](setSomeNonNullableString)" classname="com.mahanaroad.mongogen.sample.simple.SimpleEntityTest" time="0.0"/>
+  <testcase name="should_not_have_setters_for_unmodifiable_fields[1](setSomeOptionalString)" classname="com.mahanaroad.mongogen.sample.simple.SimpleEntityTest" time="0.0"/>
+  <testcase name="should_not_have_setters_for_unmodifiable_fields[2](setSomeBoolean)" classname="com.mahanaroad.mongogen.sample.simple.SimpleEntityTest" time="0.001"/>
+  <testcase name="should_not_have_setters_for_unmodifiable_fields[3](setSomeStatus)" classname="com.mahanaroad.mongogen.sample.simple.SimpleEntityTest" time="0.0"/>
+  <testcase name="should_throw_BlankStringException_if_mandatory_constructor_arg_is_null_or_blank" classname="com.mahanaroad.mongogen.sample.simple.SimpleEntityTest" time="0.0"/>
+  <testcase name="should_throw_NullPointerException_for_optional_constructor_arg" classname="com.mahanaroad.mongogen.sample.simple.SimpleEntityTest" time="0.0"/>
+  <testcase name="should_throw_NullPointerException_if_mandatory_constructor_arg_is_null" classname="com.mahanaroad.mongogen.sample.simple.SimpleEntityTest" time="0.0"/>
+  <testcase name="testAllFieldsExist" classname="com.mahanaroad.mongogen.sample.simple.SimpleEntityTest" time="0.001"/>
+  <testcase name="testGetter" classname="com.mahanaroad.mongogen.sample.simple.SimpleEntityTest" time="0.001"/>
+  <testcase name="testSetterForNonPrimitive" classname="com.mahanaroad.mongogen.sample.simple.SimpleEntityTest" time="0.0"/>
+  <testcase name="testSetterForPrimitive" classname="com.mahanaroad.mongogen.sample.simple.SimpleEntityTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

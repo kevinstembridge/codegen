@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.mahanaroad.mongogen.migration.MongogenMigrationIdTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2016-09-30T22:30:59" hostname="doug" time="0.006">
+  <properties/>
+  <testcase name="testCompareTo[0](MongogenMigrationId{[1]}, MongogenMigrationId{[2]}, -1)" classname="com.mahanaroad.mongogen.migration.MongogenMigrationIdTest" time="0.004"/>
+  <testcase name="testCompareTo[1](MongogenMigrationId{[1]}, MongogenMigrationId{[2, 1]}, -1)" classname="com.mahanaroad.mongogen.migration.MongogenMigrationIdTest" time="0.0"/>
+  <testcase name="testCompareTo[2](MongogenMigrationId{[2]}, MongogenMigrationId{[1]}, 1)" classname="com.mahanaroad.mongogen.migration.MongogenMigrationIdTest" time="0.0"/>
+  <testcase name="testCompareTo[3](MongogenMigrationId{[1, 2, 3]}, MongogenMigrationId{[1, 2, 3]}, 0)" classname="com.mahanaroad.mongogen.migration.MongogenMigrationIdTest" time="0.0"/>
+  <testcase name="testCompareTo[4](MongogenMigrationId{[1, 2]}, MongogenMigrationId{[2]}, -1)" classname="com.mahanaroad.mongogen.migration.MongogenMigrationIdTest" time="0.0"/>
+  <testcase name="testCompareTo[5](MongogenMigrationId{[1]}, MongogenMigrationId{[7]}, -1)" classname="com.mahanaroad.mongogen.migration.MongogenMigrationIdTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

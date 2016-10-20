@@ -1,0 +1,91 @@
+
+
+buildscript {
+    repositories {
+        mavenCentral()
+        flatDir {
+            dirs '../lib'
+        }
+    }
+    dependencies {
+        classpath project(":mahana-mongogen-generator")
+    }
+}
+
+
+dependencies {
+    compile project(":mahana-mongogen-generator")
+    compile project(":mahana-mongogen-library")
+}
+
+
+sourceSets {
+    main {
+        java {
+            srcDir 'build/generated-src/java/main'
+        }
+    }
+    test {
+        java {
+            srcDir 'build/generated-src/java/test'
+        }
+    }
+    mongogen {
+        compileClasspath = sourceSets.main.compileClasspath
+        output.classesDir = sourceSets.main.output.classesDir
+    }
+}
+
+
+configurations {
+    testArtifacts.extendsFrom testRuntime
+}
+
+
+task testJar(type: Jar) {
+    classifier "test"
+    from sourceSets.test.output
+}
+
+
+artifacts {
+    testArtifacts testJar
+}
+
+
+task generateSampleModel(type: JavaExec, dependsOn: project.tasks[sourceSets.mongogen.getCompileTaskName('java')]) {
+
+    onlyIf {
+        project.hasProperty('skipGenerateModel') == false
+    }
+
+    String modelDescriptorClass = 'com.mahanaroad.mongogen.sample.TestingSpec'
+    String mainOutputDirLocation = 'build/generated-src/java/main'
+    String testOutputDirLocation = 'build/generated-src/java/test'
+    String mainJavascriptOutputDirLocation = 'build/generated-src/javascript/main'
+
+    main = 'com.mahanaroad.mongogen.generator.ModelGeneratorMain'
+    args = [modelDescriptorClass, mainOutputDirLocation, testOutputDirLocation, mainJavascriptOutputDirLocation]
+    classpath = project.files(configurations.runtime, sourceSets.mongogen.output)
+}
+
+
+task generateFieldConverterSampleModel(type: JavaExec, dependsOn: project.tasks[sourceSets.mongogen.getCompileTaskName('java')]) {
+
+    onlyIf {
+        project.hasProperty('skipGenerateModel') == false
+    }
+
+    String modelDescriptorClass = 'com.mahanaroad.mongogen.sample.FieldConverterTestingSpec'
+    String mainOutputDirLocation = 'build/generated-src/java/main'
+    String testOutputDirLocation = 'build/generated-src/java/test'
+    String mainJavascriptOutputDirLocation = 'build/generated-src/javascript/main'
+
+    main = 'com.mahanaroad.mongogen.generator.ModelGeneratorMain'
+    args = [modelDescriptorClass, mainOutputDirLocation, testOutputDirLocation, mainJavascriptOutputDirLocation]
+    classpath = project.files(configurations.runtime, sourceSets.mongogen.output)
+}
+
+
+compileJava.dependsOn = [generateSampleModel, generateFieldConverterSampleModel]
+

@@ -1,0 +1,5 @@
+include 'mahana-mongogen-generator'
+include 'mahana-mongogen-library'
+include 'mahana-mongogen-spec'
+include 'mahana-mongogen-sample'
+include 'mahana-mongogen-testing'

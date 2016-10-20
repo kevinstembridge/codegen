@@ -1,0 +1,14 @@
+
+dependencies {
+
+    compile "org.hibernate:hibernate-validator:$hibernateValidatorVersion"
+    compile "org.mongodb:mongodb-driver:$mongodbDriverVersion"
+    compile "org.springframework:spring-context:$springVersion"
+    compile "org.springframework.data:spring-data-commons:$springDataCommonsVersion"
+    compile "com.fasterxml.jackson.core:jackson-annotations:$jacksonAnnotationsVersion"
+
+    testCompile "org.testng:testng:$testNgVersion"
+
+}
+
+
